@@ -1,0 +1,497 @@
+/* Базовые настройки */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  background-color: #fdf5e6; /* Персиковый фон */
+  background-image: url(back.png);
+  background-size: cover;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Декоративные стикеры */
+.decor {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+.sticker-top-left {
+  top: 5%;
+  left: 5%;
+  animation-delay: 0s;
+}
+.sticker-top-right {
+  top: 10%;
+  right: 25%;
+  animation-delay: 1s;
+}
+.sticker-bottom-left {
+  bottom: 5%;
+  left: 40%;
+  animation-delay: 2s;
+  font-size: 4rem;
+}
+.sticker-bottom-right {
+  bottom: 20%;
+  right: 20%;
+  animation-delay: 3s;
+  font-size: 4rem;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+/* Основной контейнер */
+.container {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Шапка */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(230, 215, 250, 0.6); /* Полупрозрачный сиреневый */
+  backdrop-filter: blur(10px);
+  padding: 15px 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  border: 2px solid #e0cffc;
+}
+
+.title-area h1 {
+  font-family: "Comfortaa", cursive;
+  font-size: 1.5rem;
+  color: #4a3b6b;
+}
+.title-area p {
+  font-size: 0.85rem;
+  color: #6b5b8a;
+}
+
+.score-board {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 180px;
+}
+.star {
+  color: #ffca28;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px rgba(255, 202, 40, 0.5);
+}
+.score-text {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #4a3b6b;
+  margin-bottom: 5px;
+}
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #dcd0f5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: #a88cf0;
+  width: 0%;
+  transition: width 0.4s ease;
+  border-radius: 10px;
+}
+
+/* Экраны */
+.screen {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+.screen.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Бумажная карточка */
+.paper-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+  border: 1px solid #eee;
+}
+.paper-card::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 120px;
+  height: 30px;
+  background: rgba(255, 230, 150, 0.6);
+  border-radius: 2px;
+  z-index: 2;
+}
+
+.start-card {
+  text-align: center;
+  padding: 50px 30px;
+}
+.start-card h2 {
+  font-family: "Comfortaa", cursive;
+  margin-bottom: 20px;
+  color: #4a3b6b;
+}
+.start-card p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  color: #555;
+}
+.small-text {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+/* Кнопка */
+.main-btn {
+  background: linear-gradient(135deg, #a88cf0, #8a6de0);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(168, 140, 240, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.main-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(168, 140, 240, 0.6);
+  background: linear-gradient(135deg, #b39cf3, #957be6);
+}
+.main-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Экран игры: Карточка истории */
+.story-card {
+  margin-bottom: 25px;
+  padding: 20px;
+}
+.story-header {
+  margin-bottom: 15px;
+}
+.badge {
+  background: #fdf5e6;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #8a6de0;
+  border: 1px solid #e0cffc;
+}
+.story-content {
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+}
+.polaroid {
+  background: white;
+  padding: 10px 10px 30px 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: rotate(-2deg);
+  position: relative;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  display: inline-block; /* рамка по размеру содержимого */
+  max-width: 45%; /* чтобы не занимала больше половины карточки */
+  line-height: 0; /* убираем лишний отступ под картинкой */
+}
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+.polaroid img {
+  display: block;
+  max-width: 100%; /* не вылезает за рамку */
+  width: auto; /* реальная ширина фото */
+  height: auto; /* реальная высота фото */
+  max-height: 320px; /* ограничение по высоте, чтобы не растягивало карточку */
+  object-fit: contain; /* сохраняем пропорции */
+  border: 1px solid #f0f0f0;
+}
+
+.img-heart {
+  position: absolute;
+  bottom: 8px;
+  left: 15px;
+  color: #4a3b6b;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.story-text {
+  font-size: 1.4rem; /* крупнее, чем было */
+  line-height: 1.55;
+  color: #333;
+  font-weight: 500;
+  flex: 1;
+  min-width: 0;
+  transition: font-size 0.2s ease;
+  word-break: break-word;
+}
+
+/* Сетка ответов */
+.question-title {
+  text-align: center;
+  font-family: "Comfortaa", cursive;
+  font-size: 1.3rem;
+  color: #4a3b6b;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.answers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+/* Кнопки ответов */
+.answer-btn {
+  padding: 15px 10px;
+  border: none;
+  border-radius: 25px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #333;
+}
+
+/* Разные цвета для кнопок, как на эскизе */
+.answer-btn:nth-child(1) {
+  background: #ffb6c1;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+} /* Розовый */
+.answer-btn:nth-child(2) {
+  background: #b39cf3;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+} /* Фиолетовый */
+.answer-btn:nth-child(3) {
+  background: #ffdf85;
+  color: #7a5f00;
+} /* Желтый */
+.answer-btn:nth-child(4) {
+  background: #7ce0c3;
+  color: #0b5a44;
+} /* Зеленый */
+.answer-btn:nth-child(5) {
+  background: #8ecae6;
+  color: #023e58;
+} /* Голубой */
+.answer-btn:nth-child(6) {
+  background: #ffb4a2;
+  color: #7a2e1e;
+} /* Персиковый */
+.answer-btn:nth-child(7) {
+  background: #00bfd8;
+  color: #003a45;
+} /* Ярко-голубой */
+
+.answer-btn:nth-child(8) {
+  background: #c8e6c9;
+  color: #1b5e20;
+} /* Светло-зелёный */
+
+.answer-btn:nth-child(9) {
+  background: #ffccbc;
+  color: #7a2e1e;
+} /* Персиковый */
+
+.answer-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.1);
+  filter: brightness(1.05);
+}
+.answer-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+.answer-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Экран результата */
+.result-card {
+  text-align: center;
+  padding: 40px 30px;
+}
+.result-card h2 {
+  font-family: "Comfortaa", cursive;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+.result-card.correct h2 {
+  color: #2ecc71;
+}
+.result-card.wrong h2 {
+  color: #e74c3c;
+}
+#result-author {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #555;
+}
+.congrats-box {
+  background: #fff9e6;
+  border: 2px dashed #ffca28;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #444;
+  display: none;
+}
+.congrats-box.visible {
+  display: block;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  .score-board {
+    align-items: center;
+    width: 100%;
+  }
+  .story-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .polaroid {
+    width: 100%;
+    max-width: 250px;
+    transform: rotate(0);
+  }
+  .answers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .answers-grid {
+    grid-template-columns: 1fr;
+  }
+  .title-area h1 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Картинка внутри пожелания */
+.congrats-img {
+  display: block;
+  max-width: 100%;
+  max-height: 280px;
+  width: auto;
+  margin: 15px auto 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  object-fit: contain;
+}
+
+/* ===== Увеличение полароида по клику ===== */
+.polaroid {
+  cursor: zoom-in;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Увеличенное состояние — общее для ПК и телефона */
+.polaroid.zoomed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  z-index: 9999;
+  max-width: 50vw; /* ~50% ширины экрана */
+  max-height: 80vh; /* чтобы влезло по высоте */
+  padding: 15px 15px 45px 15px; /* рамка полароида крупнее */
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.75); /* затемнение фона */
+  cursor: zoom-out;
+  border-radius: 4px;
+}
+
+.polaroid.zoomed img {
+  max-width: 100%;
+  max-height: calc(80vh - 60px); /* минус паддинги рамки */
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* На телефонах — почти на весь экран */
+@media (max-width: 768px) {
+  .polaroid.zoomed {
+    max-width: 90vw;
+    max-height: 85vh;
+  }
+  .polaroid.zoomed img {
+    max-height: calc(85vh - 60px);
+  }
+}

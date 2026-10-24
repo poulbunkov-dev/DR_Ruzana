@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Кто это был? | Игра для именинника</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Nunito:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Иконки -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Декоративные элементы (стикеры, цветы) -->
+    <div class="decor sticker-top-left">🎁</div>
+    <div class="decor sticker-top-right">✨</div>
+    <div class="decor sticker-bottom-left">🌼</div>
+    <div class="decor sticker-bottom-right">🌿</div>
+
+    <div class="container">
+      <!-- Шапка -->
+      <header class="header">
+        <div class="title-area">
+          <h1>Кто это был? <i class="fa-regular fa-heart"></i></h1>
+          <p>Угадай, кто из друзей написал эту историю!</p>
+        </div>
+        <div class="score-board">
+          <span class="star"><i class="fa-solid fa-star"></i></span>
+          <div class="score-text">
+            Угадано: <span id="score">0</span> / <span id="total">10</span>
+          </div>
+          <div class="progress-bar">
+            <div id="progress" class="progress-fill"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Экран приветствия -->
+      <div id="start-screen" class="screen active">
+        <div class="paper-card start-card">
+          <h2>Привет, Зайчонок!</h2>
+          <p>
+            Твои друзья подготовили для тебя истории. Сможешь ли ты угадать,
+            кому принадлежит каждая из них?
+          </p>
+          <p class="small-text">
+            За правильный ответ ты получишь особое поздравление!
+          </p>
+          <button id="start-btn" class="main-btn">
+            Начать игру <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Экран игры -->
+      <div id="game-screen" class="screen">
+        <div class="paper-card story-card">
+          <div class="story-header">
+            <span class="badge"
+              ><i class="fa-solid fa-bookmark"></i> История
+              <span id="story-number">1</span> из
+              <span id="total-stories">10</span></span
+            >
+          </div>
+          <div class="story-content">
+            <div class="polaroid">
+              <img
+                id="story-img"
+                src="img\Чото не так.jpg"
+                alt="Фото истории"
+              />
+              <i class="fa-regular fa-heart img-heart"></i>
+            </div>
+            <p id="story-text" class="story-text">Текст истории...</p>
+          </div>
+        </div>
+
+        <div class="question-title">
+          Кто это мог быть? <i class="fa-solid fa-hand-pointer"></i>
+        </div>
+
+        <div class="answers-grid" id="answers-container">
+          <!-- Кнопки генерируются в JS -->
+        </div>
+      </div>
+
+      <!-- Экран результата (после ответа) -->
+      <div id="result-screen" class="screen">
+        <div class="paper-card result-card" id="result-card">
+          <h2 id="result-title">Правильно!</h2>
+          <p id="result-author">Это был(а) ...</p>
+          <div class="congrats-box" id="congrats-box">
+            <p id="congrats-text"></p>
+          </div>
+          <button id="next-btn" class="main-btn">
+            Следующая история <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Экран финала -->
+      <div id="end-screen" class="screen">
+        <div class="paper-card start-card">
+          <h2>Игра окончена! 🎉</h2>
+          <p>
+            Ты угадал <strong id="final-score">0</strong> из
+            <strong id="final-total">10</strong> историй!
+          </p>
+          <p id="final-message">Ты отлично знаешь своих друзей!</p>
+          <button onclick="location.reload()" class="main-btn">
+            Играть снова <i class="fa-solid fa-rotate-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Сначала данные, потом логика -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
